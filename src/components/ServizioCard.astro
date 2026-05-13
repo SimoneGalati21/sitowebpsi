@@ -1,0 +1,59 @@
+---
+import type { Servizio } from '../data/servizi.ts';
+
+interface Props {
+  servizio: Servizio;
+}
+
+const { servizio } = Astro.props;
+---
+<article class="card" id={servizio.slug}>
+  <div class="icon-wrap" set:html={servizio.icon} />
+  <h3>{servizio.titolo}</h3>
+  <p>{servizio.descrizioneBreve}</p>
+</article>
+
+<style>
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: var(--color-secondary);
+  }
+
+  .icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .icon-wrap :global(svg) { width: 28px; height: 28px; }
+
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  p {
+    color: var(--color-muted);
+    margin: 0;
+    line-height: 1.65;
+  }
+</style>
