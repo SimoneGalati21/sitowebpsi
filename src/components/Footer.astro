@@ -1,0 +1,58 @@
+---
+import { profilo } from '../data/profilo.ts';
+const anno = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="inner">
+    <div class="col">
+      <strong class="name">{profilo.nome}</strong>
+      <span>{profilo.titolo}</span>
+      <span class="muted">{profilo.albo}</span>
+    </div>
+    <div class="col">
+      <a href={`mailto:${profilo.email}`}>{profilo.email}</a>
+      <a href={`tel:${profilo.tel}`}>{profilo.telDisplay}</a>
+      <span>{profilo.indirizzo.via} — {profilo.indirizzo.cap} {profilo.indirizzo.citta}</span>
+    </div>
+    <div class="col copyright">
+      <span>© {anno} {profilo.nome}</span>
+      <span class="muted">P.IVA placeholder</span>
+      <span class="muted">Tutti i diritti riservati</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-3xl);
+  }
+
+  .inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    font-size: 0.9rem;
+  }
+
+  .col { display: flex; flex-direction: column; gap: var(--space-xs); }
+  .name { font-family: var(--font-heading); font-size: 1rem; }
+  .muted { color: var(--color-muted); font-size: 0.85rem; }
+  .copyright { align-items: flex-end; text-align: right; }
+
+  .col a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .col a:hover { color: var(--color-primary); text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    .inner { grid-template-columns: 1fr; }
+    .copyright { align-items: flex-start; text-align: left; }
+  }
+</style>
