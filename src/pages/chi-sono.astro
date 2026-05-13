@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { profilo } from '../data/profilo.ts';
+---
+<Base
+  title="Chi sono"
+  description={`Bio e approccio di ${profilo.nome}, psicoterapeuta a ${profilo.indirizzo.citta}.`}
+>
+  <Hero
+    title="Chi sono"
+    sub={profilo.titolo}
+    variant="compact"
+  />
+
+  <section class="bio">
+    <h2>La mia storia professionale</h2>
+    <p>{profilo.bio}</p>
+  </section>
+
+  <section class="formazione">
+    <h2>Formazione</h2>
+    <ul>
+      {profilo.formazione.map((f) => <li>{f}</li>)}
+    </ul>
+  </section>
+
+  <section class="approccio">
+    <h2>Il mio approccio</h2>
+    <p>{profilo.approccio}</p>
+  </section>
+
+  <section class="cta-block">
+    <h2>Vuoi sapere come lavoriamo?</h2>
+    <p>Il primo colloquio è gratuito e senza impegno.</p>
+    <a href="/contatti" class="btn-cta">Contattami</a>
+  </section>
+</Base>
+
+<style>
+  section { max-width: 70ch; margin-bottom: var(--space-2xl); }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  ul li {
+    padding-left: var(--space-lg);
+    position: relative;
+    line-height: 1.6;
+  }
+
+  ul li::before {
+    content: "▸";
+    color: var(--color-primary);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .cta-block {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    text-align: center;
+    max-width: none;
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-cta {
+    display: inline-block;
+    margin-top: var(--space-md);
+    padding: 14px 28px;
+    background: var(--color-cta);
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: background var(--transition), transform var(--transition);
+    cursor: pointer;
+  }
+  .btn-cta:hover { background: var(--color-cta-hover); transform: translateY(-1px); color: #fff; }
+</style>
