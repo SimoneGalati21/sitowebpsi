@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { servizi } from '../data/servizi.ts';
+---
+<Base
+  title="Servizi"
+  description="Aree di intervento: ansia, depressione, terapia di coppia, adolescenti, EMDR, sedute online."
+>
+  <Hero
+    title="Aree di intervento"
+    sub="Percorsi personalizzati, costruiti sulle tue esigenze. Ogni terapia parte da un primo colloquio gratuito."
+    variant="compact"
+  />
+
+  <div class="lista">
+    {servizi.map((s) => (
+      <article class="servizio" id={s.slug}>
+        <div class="icon-wrap" set:html={s.icon} />
+        <div class="body">
+          <h2>{s.titolo}</h2>
+          <p>{s.descrizioneEstesa}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <section class="cta-block">
+    <h2>Non sai da dove iniziare?</h2>
+    <p>Il primo colloquio gratuito ci aiuta a capire insieme il percorso più adatto.</p>
+    <a href="/contatti" class="btn-cta">Prenota ora</a>
+  </section>
+</Base>
+
+<style>
+  .lista {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .servizio {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    align-items: start;
+    transition: box-shadow var(--transition), border-color var(--transition);
+  }
+
+  .servizio:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-secondary);
+  }
+
+  .icon-wrap {
+    width: 64px;
+    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+  .icon-wrap :global(svg) { width: 32px; height: 32px; }
+
+  .servizio h2 {
+    margin: 0 0 var(--space-sm);
+    font-size: 1.35rem;
+  }
+  .servizio p {
+    color: var(--color-muted);
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .cta-block {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-cta {
+    display: inline-block;
+    margin-top: var(--space-md);
+    padding: 14px 28px;
+    background: var(--color-cta);
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: background var(--transition), transform var(--transition);
+    cursor: pointer;
+  }
+  .btn-cta:hover { background: var(--color-cta-hover); transform: translateY(-1px); color: #fff; }
+
+  @media (max-width: 600px) {
+    .servizio { grid-template-columns: 1fr; gap: var(--space-md); }
+  }
+</style>
