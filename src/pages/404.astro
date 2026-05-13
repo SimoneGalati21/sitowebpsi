@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Pagina non trovata">
+  <section class="notfound">
+    <h1>404</h1>
+    <p>La pagina che cerchi non esiste o è stata spostata.</p>
+    <a href="/" class="btn-cta">Torna alla home</a>
+  </section>
+</Base>
+
+<style>
+  .notfound {
+    text-align: center;
+    padding: var(--space-3xl) 0;
+  }
+  .notfound h1 {
+    font-size: clamp(4rem, 12vw, 7rem);
+    margin-bottom: var(--space-sm);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-cta));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn-cta {
+    display: inline-block;
+    margin-top: var(--space-lg);
+    padding: 14px 28px;
+    background: var(--color-cta);
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: background var(--transition), transform var(--transition);
+    cursor: pointer;
+  }
+  .btn-cta:hover { background: var(--color-cta-hover); transform: translateY(-1px); color: #fff; }
+</style>
