@@ -1,10 +1,22 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { profilo } from '../data/profilo.ts';
+
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title = 'Sito Psi', description = 'Sito statico' } = Astro.props;
+const {
+  title,
+  description = `${profilo.nome} — ${profilo.titolo}. Studio a ${profilo.indirizzo.citta}. Percorsi di psicoterapia individuale, di coppia, per adolescenti, online ed EMDR.`,
+  ogImage = '/og-default.svg',
+} = Astro.props;
+
+const pageTitle = title ? `${title} — ${profilo.nome}` : `${profilo.nome} — ${profilo.titolo}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost:4321');
 ---
 <!doctype html>
 <html lang="it">
@@ -12,30 +24,149 @@ const { title = 'Sito Psi', description = 'Sito statico' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#8B5CF6" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl.toString()} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="it_IT" />
+
+    <title>{pageTitle}</title>
   </head>
   <body>
-    <slot />
+    <a href="#main" class="skip-link">Vai al contenuto</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
 
 <style is:global>
   :root {
-    --color-bg: #fafafa;
-    --color-fg: #1a1a1a;
-    --color-accent: #5b6cff;
-    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --color-primary: #8B5CF6;
+    --color-secondary: #C4B5FD;
+    --color-cta: #10B981;
+    --color-cta-hover: #059669;
+    --color-bg: #FAF5FF;
+    --color-surface: #FFFFFF;
+    --color-text: #4C1D95;
+    --color-muted: #6D5A8C;
+    --color-border: #E9DDFB;
+
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Raleway', system-ui, -apple-system, sans-serif;
+
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+
+    --shadow-sm: 0 1px 2px rgba(76, 29, 149, 0.05);
+    --shadow-md: 0 4px 6px rgba(76, 29, 149, 0.08);
+    --shadow-lg: 0 10px 15px rgba(76, 29, 149, 0.10);
+    --shadow-xl: 0 20px 25px rgba(76, 29, 149, 0.12);
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+
+    --max-width: 1100px;
+    --transition: 200ms ease;
   }
 
-  * { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; }
 
   html, body {
     margin: 0;
     padding: 0;
     background: var(--color-bg);
-    color: var(--color-fg);
-    font-family: var(--font-sans);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition);
+  }
+
+  a:hover { color: var(--color-cta); }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+    line-height: 1.2;
+    margin: 0 0 var(--space-md);
+    font-weight: 600;
+  }
+
+  h1 { font-size: clamp(2rem, 5vw, 3rem); }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  h3 { font-size: 1.25rem; }
+
+  p { margin: 0 0 var(--space-md); }
+
+  button, .btn-primary, .btn-secondary { cursor: pointer; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--color-primary);
+    color: #fff;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 0 0 var(--radius-md) 0;
+    text-decoration: none;
+    z-index: 100;
+  }
+  .skip-link:focus { left: 0; color: #fff; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
