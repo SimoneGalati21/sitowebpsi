@@ -46,13 +46,21 @@ sitowebpsi/
 
 ## Stato repo
 - Git init locale (branch `main`)
+- Implementazione iniziale completata: 4 pagine + 404 + componenti + data layer
+- Design system "Soft UI Evolution" applicato (ui-ux-pro-max skill)
+- Build statico verificato: `make build` → `dist/` pronto per GitHub Pages
 - Nessun remote configurato (push manuale utente)
-- File staged, nessun commit ancora
 
 ## Decisioni prese
-- ✅ Stack: Astro
+- ✅ Stack: Astro 5
 - ✅ Repo: git init locale, no remote
-- ⏳ Contenuto: ancora da definire ("psi" = ?)
+- ✅ Contenuto: vetrina psicologa (placeholder credibili — Dott.ssa Elena Marchetti)
+- ✅ Multi-pagina, 4 pagine core + 404
+- ✅ Contatti: solo info (mailto/tel/whatsapp + mappa iframe)
+- ✅ Design system: lavender (#8B5CF6) + wellness green (#10B981), Lora + Raleway
+- ✅ Anti-pattern rispettati: no emoji icons (SVG Lucide), no neon, no dark mode
+- ⏳ Dati reali professionista: da sostituire prima del deploy
+- ⏳ `astro.config.mjs` `site` + `base`: da scommentare prima del deploy GitHub Pages
 
 ## Vincoli
 - Memoria progetto: SOLO dentro questa cartella (no `~/.claude/`)
