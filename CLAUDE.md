@@ -44,6 +44,13 @@ sitowebpsi/
 - `site` e `base` in `astro.config.mjs` commentati: scommentare quando si sa URL GitHub Pages (es. `https://USERNAME.github.io` + `base: '/sitowebpsi'` se non è user/org site).
 - HMR via polling (`CHOKIDAR_USEPOLLING=true`) per compatibilità bind mount Docker.
 
+## Gotcha: Vite cache stale dopo rewrite file
+Quando si **riscrive completamente** un `.astro` (Write tool, non Edit), Vite dev server può servire i **CSS module cached** invece di quelli aggiornati. Sintomo: file su disco aggiornato + `curl` mostra CSS nuovo, ma `<style>` nel DOM browser ha CSS vecchio (verificabile via `document.querySelectorAll('style')` o computed `var(--color-bg)` ancora old).
+
+**Workaround**: `docker compose restart web` (oppure `make down && make up`). HMR funziona bene su Edit incrementali, rompe su Write totale dei `.astro`.
+
+**Cause root**: cache moduli Vite + scoped CSS `data-astro-cid-xxx` non invalidati al rewrite. Issue noto Astro+Vite+bind mount Docker.
+
 ## Stato repo
 - Git init locale (branch `main`)
 - Implementazione iniziale completata: 4 pagine + 404 + componenti + data layer
