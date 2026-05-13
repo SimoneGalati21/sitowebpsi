@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ContactInfo from '../components/ContactInfo.astro';
+import { profilo } from '../data/profilo.ts';
+
+const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${profilo.indirizzo.via}, ${profilo.indirizzo.cap} ${profilo.indirizzo.citta}`
+)}`;
+---
+<Base
+  title="Contatti"
+  description={`Come contattare ${profilo.nome}: email, telefono, WhatsApp, sede a ${profilo.indirizzo.citta}.`}
+>
+  <Hero
+    title="Contatti"
+    sub="Scrivimi o chiamami: rispondo entro 24 ore nei giorni lavorativi."
+    variant="compact"
+  />
+
+  <div class="grid">
+    <section class="card-pane">
+      <h2>Come raggiungermi</h2>
+      <ContactInfo variant="full" />
+    </section>
+
+    <section class="card-pane">
+      <h2>Dove sono</h2>
+      <iframe
+        src={profilo.mapsEmbedUrl}
+        title={`Mappa studio ${profilo.nome}`}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <p class="fallback">
+        <a href={mapsLink} target="_blank" rel="noopener noreferrer">
+          Apri in Google Maps →
+        </a>
+      </p>
+    </section>
+  </div>
+
+  <section class="nota">
+    <h2>Prima del primo contatto</h2>
+    <p>
+      Se preferisci, puoi anticiparmi nella prima email/messaggio una breve
+      descrizione di ciò che ti porta a cercare un percorso. Non è necessario,
+      ma può aiutarci a preparare meglio il primo colloquio. Tutte le
+      comunicazioni sono coperte da segreto professionale.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .card-pane {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  iframe {
+    width: 100%;
+    height: 320px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .fallback {
+    margin-top: var(--space-sm);
+    font-size: 0.9rem;
+  }
+
+  .nota {
+    max-width: 70ch;
+    margin-bottom: var(--space-2xl);
+  }
+
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
