@@ -1,13 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="og-bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#8B5CF6"/>
       <stop offset="100%" stop-color="#C4B5FD"/>
     </linearGradient>
+    <linearGradient id="og-blob-1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="og-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
   </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <text x="600" y="280" text-anchor="middle" font-family="Georgia, serif" font-size="64" font-weight="700" fill="#fff">Dott.ssa Elena Marchetti</text>
-  <text x="600" y="360" text-anchor="middle" font-family="system-ui, sans-serif" font-size="36" fill="rgba(255,255,255,0.95)">Psicologa Psicoterapeuta</text>
-  <rect x="475" y="420" width="250" height="6" rx="3" fill="#10B981"/>
-  <text x="600" y="490" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" fill="rgba(255,255,255,0.8)">Milano · Online</text>
+
+  <rect width="1200" height="630" fill="url(#og-bg)"/>
+
+  <!-- Decorative blobs -->
+  <path d="M -100 100 C 100 0, 300 50, 350 200 C 380 320, 250 380, 100 350 C -30 320, -100 200, -100 100 Z" fill="url(#og-blob-1)"/>
+  <path d="M 1300 530 C 1100 480, 950 540, 920 620 C 900 700, 1100 740, 1250 700 C 1350 670, 1380 580, 1300 530 Z" fill="url(#og-blob-1)"/>
+
+  <!-- Symbol psi background -->
+  <text x="1000" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="380" font-weight="700" fill="#FFFFFF" opacity="0.12">ψ</text>
+
+  <!-- Main content -->
+  <text x="100" y="270" font-family="Georgia, serif" font-size="64" font-weight="700" fill="#fff">Dott.ssa Elena Marchetti</text>
+  <text x="100" y="340" font-family="system-ui, sans-serif" font-size="36" fill="rgba(255,255,255,0.95)">Psicologa Psicoterapeuta</text>
+
+  <!-- Accent bar -->
+  <rect x="100" y="380" width="200" height="6" rx="3" fill="url(#og-accent)"/>
+
+  <!-- Tagline -->
+  <text x="100" y="445" font-family="system-ui, sans-serif" font-size="26" fill="rgba(255,255,255,0.85)">Uno spazio per ascoltarti.</text>
+  <text x="100" y="490" font-family="system-ui, sans-serif" font-size="22" fill="rgba(255,255,255,0.7)">Milano · Sedute in studio e online</text>
+
+  <!-- Bottom info -->
+  <line x1="100" y1="555" x2="280" y2="555" stroke="#fff" stroke-width="1" opacity="0.4"/>
+  <text x="100" y="585" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.65)">studiomarchetti.it</text>
 </svg>

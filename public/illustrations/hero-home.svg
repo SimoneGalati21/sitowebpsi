@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Illustrazione decorativa: forme organiche che evocano calma e serenità">
+  <defs>
+    <linearGradient id="hg-grad-primary" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C4B5FD"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="hg-grad-accent" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <radialGradient id="hg-glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#FAF5FF"/>
+      <stop offset="100%" stop-color="#FAF5FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background soft glow -->
+  <circle cx="300" cy="240" r="280" fill="url(#hg-glow)"/>
+
+  <!-- Large organic blob (lavender) -->
+  <path d="M 120 320 C 100 220, 200 140, 320 160 C 460 180, 520 280, 480 400 C 440 500, 280 520, 180 460 C 100 410, 130 380, 120 320 Z"
+        fill="url(#hg-grad-primary)" opacity="0.85"/>
+
+  <!-- Smaller accent blob (green) -->
+  <path d="M 340 230 C 380 200, 440 220, 450 280 C 460 340, 410 380, 360 360 C 320 345, 310 270, 340 230 Z"
+        fill="url(#hg-grad-accent)" opacity="0.55"/>
+
+  <!-- Decorative leaf 1 -->
+  <path d="M 150 200 Q 200 140, 270 160 Q 240 220, 180 240 Q 140 230, 150 200 Z"
+        fill="#fff" opacity="0.5"/>
+  <path d="M 165 195 Q 210 165, 250 175" stroke="#8B5CF6" stroke-width="1.5" fill="none" opacity="0.6" stroke-linecap="round"/>
+
+  <!-- Decorative leaf 2 -->
+  <path d="M 430 420 Q 480 380, 510 410 Q 490 460, 440 460 Q 410 450, 430 420 Z"
+        fill="#fff" opacity="0.5"/>
+  <path d="M 445 425 Q 475 420, 495 440" stroke="#8B5CF6" stroke-width="1.5" fill="none" opacity="0.6" stroke-linecap="round"/>
+
+  <!-- Circle accents -->
+  <circle cx="220" cy="430" r="8" fill="#10B981" opacity="0.7"/>
+  <circle cx="450" cy="200" r="6" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="380" cy="450" r="4" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="150" cy="350" r="5" fill="#10B981" opacity="0.5"/>
+
+  <!-- Wave at bottom -->
+  <path d="M 80 480 Q 200 460, 320 480 Q 440 500, 540 470" stroke="#fff" stroke-width="2" fill="none" opacity="0.6" stroke-linecap="round"/>
+  <path d="M 80 495 Q 200 478, 320 495 Q 440 512, 540 488" stroke="#8B5CF6" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+</svg>

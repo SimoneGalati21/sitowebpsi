@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="presentation" aria-hidden="true">
+  <defs>
+    <linearGradient id="pb-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C4B5FD" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="pb-grad-2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#34D399" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Large blob top-left -->
+  <path d="M -50 100 C 80 -20, 240 -10, 320 80 C 400 170, 350 280, 240 320 C 110 360, -30 280, -50 180 Z"
+        fill="url(#pb-grad)"/>
+
+  <!-- Medium blob bottom-right -->
+  <path d="M 850 400 C 700 350, 600 420, 580 520 C 570 600, 700 660, 820 620 C 900 590, 920 480, 850 400 Z"
+        fill="url(#pb-grad-2)"/>
+
+  <!-- Small dots scattered -->
+  <circle cx="500" cy="120" r="6" fill="#8B5CF6" opacity="0.2"/>
+  <circle cx="650" cy="200" r="4" fill="#10B981" opacity="0.25"/>
+  <circle cx="400" cy="450" r="5" fill="#8B5CF6" opacity="0.18"/>
+  <circle cx="150" cy="500" r="7" fill="#C4B5FD" opacity="0.3"/>
+  <circle cx="730" cy="80" r="4" fill="#10B981" opacity="0.2"/>
+</svg>

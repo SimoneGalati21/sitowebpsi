@@ -13,9 +13,15 @@ import { profilo } from '../data/profilo.ts';
     variant="compact"
   />
 
-  <section class="bio">
-    <h2>La mia storia professionale</h2>
-    <p>{profilo.bio}</p>
+  <section class="bio-grid">
+    <div class="avatar">
+      <img src="/illustrations/profile-avatar.svg" alt={`Ritratto stilizzato di ${profilo.nome}`} loading="eager" />
+      <span class="albo">{profilo.albo}</span>
+    </div>
+    <div class="bio">
+      <h2>La mia storia professionale</h2>
+      <p>{profilo.bio}</p>
+    </div>
   </section>
 
   <section class="formazione">
@@ -38,7 +44,43 @@ import { profilo } from '../data/profilo.ts';
 </Base>
 
 <style>
-  section { max-width: 70ch; margin-bottom: var(--space-2xl); }
+  section { margin-bottom: var(--space-2xl); }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+    max-width: none;
+  }
+
+  .avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    position: sticky;
+    top: var(--space-lg);
+  }
+
+  .avatar img {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .albo {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .bio { max-width: 65ch; }
+
+  .formazione, .approccio { max-width: 70ch; }
 
   ul {
     list-style: none;
@@ -87,4 +129,9 @@ import { profilo } from '../data/profilo.ts';
     cursor: pointer;
   }
   .btn-cta:hover { background: var(--color-cta-hover); transform: translateY(-1px); color: #fff; }
+
+  @media (max-width: 768px) {
+    .bio-grid { grid-template-columns: 1fr; }
+    .avatar { position: static; max-width: 200px; margin: 0 auto; }
+  }
 </style>
