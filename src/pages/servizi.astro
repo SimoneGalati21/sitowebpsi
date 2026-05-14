@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import { servizi } from '../data/servizi.ts';
+import { link } from '../lib/url.ts';
 ---
 <Base
   title="Servizi"
@@ -28,7 +29,7 @@ import { servizi } from '../data/servizi.ts';
   <section class="cta-block">
     <h2>Non sai da dove iniziare?</h2>
     <p>Il primo colloquio gratuito ci aiuta a capire insieme il percorso più adatto.</p>
-    <a href="/contatti" class="btn-cta">Prenota ora</a>
+    <a href={link('/contatti')} class="btn-cta">Prenota ora</a>
   </section>
 </Base>
 

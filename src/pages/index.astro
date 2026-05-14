@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import ServizioCard from '../components/ServizioCard.astro';
 import { profilo } from '../data/profilo.ts';
 import { serviziTop } from '../data/servizi.ts';
+import { link } from '../lib/url.ts';
 
 const nomeBreve = profilo.nome.replace(/^Dott\.ssa |^Dott\. /, '');
 ---
@@ -17,10 +18,10 @@ const nomeBreve = profilo.nome.replace(/^Dott\.ssa |^Dott\. /, '');
         Psicoterapia individuale, di coppia e per adolescenti.
         In studio a Milano o online. Primo colloquio gratuito.
       </p>
-      <a class="btn-primary" href="/contatti">Prenota un primo colloquio</a>
+      <a class="btn-primary" href={link('/contatti')}>Prenota un primo colloquio</a>
     </div>
     <div class="hero-illu" aria-hidden="true">
-      <img src="/illustrations/hero-home.svg" alt="" loading="eager" />
+      <img src={link('/illustrations/hero-home.svg')} alt="" loading="eager" />
     </div>
   </section>
 
@@ -31,7 +32,7 @@ const nomeBreve = profilo.nome.replace(/^Dott\.ssa |^Dott\. /, '');
       Il primo colloquio è gratuito e serve a conoscerci: nessun obbligo, solo
       l'occasione per capire se possiamo lavorare insieme.
     </p>
-    <a href="/chi-sono" class="link-more">Scopri il mio approccio →</a>
+    <a href={link('/chi-sono')} class="link-more">Scopri il mio approccio →</a>
   </section>
 
   <section class="servizi-top">
@@ -40,17 +41,17 @@ const nomeBreve = profilo.nome.replace(/^Dott\.ssa |^Dott\. /, '');
     <div class="grid">
       {serviziTop.map((s) => <ServizioCard servizio={s} />)}
     </div>
-    <a href="/servizi" class="link-more">Vedi tutti i servizi →</a>
+    <a href={link('/servizi')} class="link-more">Vedi tutti i servizi →</a>
   </section>
 
   <section class="cta-band">
-    <img src="/illustrations/pattern-blob.svg" alt="" class="cta-pattern" aria-hidden="true" />
+    <img src={link('/illustrations/pattern-blob.svg')} alt="" class="cta-pattern" aria-hidden="true" />
     <div class="cta-inner">
       <div>
         <h2>Iniziamo con un primo colloquio.</h2>
         <p>Conoscitivo, gratuito, senza impegno. Dura 50 minuti.</p>
       </div>
-      <a href="/contatti" class="btn-cta">Contattami ora</a>
+      <a href={link('/contatti')} class="btn-cta">Contattami ora</a>
     </div>
   </section>
 </Base>

@@ -26,7 +26,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'npm run preview -- --port 4321',
+    command: 'npm run test:preview -- --port 4321',
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,

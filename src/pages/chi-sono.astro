@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import { profilo } from '../data/profilo.ts';
+import { link } from '../lib/url.ts';
 ---
 <Base
   title="Chi sono"
@@ -15,7 +16,7 @@ import { profilo } from '../data/profilo.ts';
 
   <section class="bio-grid">
     <div class="avatar">
-      <img src="/illustrations/profile-avatar.svg" alt={`Ritratto stilizzato di ${profilo.nome}`} loading="eager" />
+      <img src={link('/illustrations/profile-avatar.svg')} alt={`Ritratto stilizzato di ${profilo.nome}`} loading="eager" />
       <span class="albo">{profilo.albo}</span>
     </div>
     <div class="bio">
@@ -39,7 +40,7 @@ import { profilo } from '../data/profilo.ts';
   <section class="cta-block">
     <h2>Vuoi sapere come lavoriamo?</h2>
     <p>Il primo colloquio è gratuito e senza impegno.</p>
-    <a href="/contatti" class="btn-cta">Contattami</a>
+    <a href={link('/contatti')} class="btn-cta">Contattami</a>
   </section>
 </Base>
 

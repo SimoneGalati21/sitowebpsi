@@ -1,9 +1,8 @@
 ---
 import { profilo } from '../data/profilo.ts';
+import { link, isCurrent } from '../lib/url.ts';
 
 const path = Astro.url.pathname;
-const isActive = (href: string) =>
-  href === '/' ? path === '/' : path.startsWith(href);
 
 const links = [
   { href: '/', label: 'Home' },
@@ -14,7 +13,7 @@ const links = [
 ---
 <header class="site-header">
   <div class="inner">
-    <a href="/" class="brand" aria-label={`Home — ${profilo.nome}`}>
+    <a href={link('/')} class="brand" aria-label={`Home — ${profilo.nome}`}>
       <span class="brand-mark" aria-hidden="true">ψ</span>
       <span class="brand-text">
         <span class="brand-name">{profilo.nome}</span>
@@ -26,9 +25,9 @@ const links = [
         {links.map((l) => (
           <li>
             <a
-              href={l.href}
-              aria-current={isActive(l.href) ? 'page' : undefined}
-              class:list={[{ active: isActive(l.href) }]}
+              href={link(l.href)}
+              aria-current={isCurrent(path, l.href) ? 'page' : undefined}
+              class:list={[{ active: isCurrent(path, l.href) }]}
             >
               {l.label}
             </a>

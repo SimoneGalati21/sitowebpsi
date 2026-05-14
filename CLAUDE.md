@@ -63,8 +63,16 @@ tests/
 4. Utente carica manualmente `dist/` su GitHub Pages
 
 ## Note Astro config
-- `site` e `base` in `astro.config.mjs` commentati: scommentare quando si sa URL GitHub Pages (es. `https://USERNAME.github.io` + `base: '/sitowebpsi'` se non è user/org site).
+- `site: 'https://simonegalati21.github.io'` + `base: '/sitowebpsi'` per GitHub Pages project site.
+- URL prod: https://simonegalati21.github.io/sitowebpsi/
+- Toggle env `ASTRO_BASE=0` disabilita site+base (usato dal pipeline test per servire a root).
+- Tutti i link interni in pagine/componenti usano helper `link()` da `src/lib/url.ts` (prefisso base automatico).
 - HMR via polling (`CHOKIDAR_USEPOLLING=true`) per compatibilità bind mount Docker.
+
+## Deploy GitHub Pages
+1. `make build` → genera `dist/` con base `/sitowebpsi/`
+2. Upload contenuto `dist/` su branch `gh-pages` (o cartella `/docs` su `main`) — utente fa manualmente
+3. Settings repo → Pages → source: branch `gh-pages` root
 
 ## Gotcha: Vite cache stale dopo rewrite file
 Quando si **riscrive completamente** un `.astro` (Write tool, non Edit), Vite dev server può servire i **CSS module cached** invece di quelli aggiornati. Sintomo: file su disco aggiornato + `curl` mostra CSS nuovo, ma `<style>` nel DOM browser ha CSS vecchio (verificabile via `document.querySelectorAll('style')` o computed `var(--color-bg)` ancora old).

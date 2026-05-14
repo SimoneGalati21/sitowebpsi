@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { profilo } from '../data/profilo.ts';
+import { link } from '../lib/url.ts';
 
 interface Props {
   title?: string;
@@ -12,7 +13,7 @@ interface Props {
 const {
   title,
   description = `${profilo.nome} — ${profilo.titolo}. Studio a ${profilo.indirizzo.citta}. Percorsi di psicoterapia individuale, di coppia, per adolescenti, online ed EMDR.`,
-  ogImage = '/og-default.svg',
+  ogImage = link('/og-default.svg'),
 } = Astro.props;
 
 const pageTitle = title ? `${title} — ${profilo.nome}` : `${profilo.nome} — ${profilo.titolo}`;
@@ -25,7 +26,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'http://localhost
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#8B5CF6" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={link('/favicon.svg')} />
     <link rel="canonical" href={canonicalUrl.toString()} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />

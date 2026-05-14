@@ -1,11 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import { link } from '../lib/url.ts';
 ---
 <Base title="Pagina non trovata">
   <section class="notfound">
     <h1>404</h1>
     <p>La pagina che cerchi non esiste o è stata spostata.</p>
-    <a href="/" class="btn-cta">Torna alla home</a>
+    <a href={link('/')} class="btn-cta">Torna alla home</a>
   </section>
 </Base>
 

@@ -12,10 +12,11 @@
     "test": "npm run test:unit && npm run test:build && npm run test:smoke && npm run test:e2e && npm run test:lighthouse",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
-    "test:build": "astro build",
+    "test:build": "ASTRO_BASE=0 astro build",
+    "test:preview": "ASTRO_BASE=0 astro preview --host 0.0.0.0",
     "test:smoke": "node tests/smoke/check-dist.mjs",
     "test:e2e": "playwright test",
-    "test:lighthouse": "node tests/lighthouse/run.mjs"
+    "test:lighthouse": "ASTRO_BASE=0 node tests/lighthouse/run.mjs"
   },
   "dependencies": {
     "astro": "^5.1.0"
