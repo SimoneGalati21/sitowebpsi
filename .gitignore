@@ -29,3 +29,11 @@ Thumbs.db
 # python cache (claude skills)
 __pycache__/
 *.pyc
+
+# test artefatti
+playwright-report/
+test-results/
+lighthouse-reports/
+.lighthouseci/
+coverage/
+

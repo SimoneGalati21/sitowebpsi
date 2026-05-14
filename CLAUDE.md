@@ -34,6 +34,28 @@ sitowebpsi/
 - `make clean` — rimuove dist, node_modules, container
 - `make help` — elenco completo
 
+## Test suite
+Container dedicato `test` (image `mcr.microsoft.com/playwright:v1.60.0-jammy`, Node 20 + Chromium).
+
+- `make test-build` — builda immagine test (prima volta, ~6 min)
+- `make test` — full pipeline: unit + build + smoke + e2e + lighthouse
+- `make test-unit` — solo Vitest (data layer: profilo + servizi)
+- `make test-e2e` — solo Playwright (chromium + mobile-chrome): nav/home/seo/a11y, 80 test
+- `make test-smoke` — solo smoke check su `dist/` post-build
+- `make test-lighthouse` — solo Lighthouse (perf/a11y/BP/SEO), output in `lighthouse-reports/`
+- `make test-shell` — shell dentro container test
+
+**Struttura:**
+```
+tests/
+├── unit/           # vitest (profilo.test.ts, servizi.test.ts)
+├── e2e/            # playwright (navigation, home, seo, a11y)
+├── smoke/          # check-dist.mjs (HTML + asset + link interni)
+└── lighthouse/     # run.mjs (soglie: perf 85, a11y/bp/seo 90)
+```
+
+**Nota arch**: il container test usa base **jammy/glibc**, diverso da web (alpine/musl). Bind mount selettivo per evitare conflitti rollup binaries: solo `src/`, `tests/`, `public/`, config files. `node_modules` e `package-lock.json` restano nell'image (escluso da `.dockerignore`).
+
 ## Workflow tipico
 1. `make install` (prima volta)
 2. `make up` → sviluppa con HMR

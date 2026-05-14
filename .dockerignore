@@ -8,3 +8,12 @@ dist
 npm-debug.log*
 .DS_Store
 README.md
+playwright-report
+test-results
+lighthouse-reports
+.lighthouseci
+coverage
+docs
+design-system
+.claude
+package-lock.json

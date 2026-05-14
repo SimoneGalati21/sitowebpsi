@@ -20,3 +20,24 @@ services:
       - /app/node_modules
     command: npm run build
     profiles: ["build"]
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: sitowebpsi-test
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./public:/app/public
+      - ./astro.config.mjs:/app/astro.config.mjs
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./vitest.config.ts:/app/vitest.config.ts
+      - ./playwright.config.ts:/app/playwright.config.ts
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
+      - ./lighthouse-reports:/app/lighthouse-reports
+    environment:
+      - CI=1
+    command: npm test
+    profiles: ["test"]

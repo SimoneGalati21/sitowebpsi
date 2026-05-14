@@ -8,9 +8,23 @@
     "start": "astro dev --host 0.0.0.0",
     "build": "astro build",
     "preview": "astro preview --host 0.0.0.0",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "npm run test:unit && npm run test:build && npm run test:smoke && npm run test:e2e && npm run test:lighthouse",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:build": "astro build",
+    "test:smoke": "node tests/smoke/check-dist.mjs",
+    "test:e2e": "playwright test",
+    "test:lighthouse": "node tests/lighthouse/run.mjs"
   },
   "dependencies": {
     "astro": "^5.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.60.0",
+    "@types/node": "^22.10.0",
+    "chrome-launcher": "^1.1.2",
+    "lighthouse": "^12.3.0",
+    "vitest": "^2.1.8"
   }
 }
