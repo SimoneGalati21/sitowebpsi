@@ -10,13 +10,13 @@ const anno = new Date().getFullYear();
       <span class="muted">{profilo.albo}</span>
     </div>
     <div class="col">
-      <a href={`mailto:${profilo.email}`}>{profilo.email}</a>
-      <a href={`tel:${profilo.tel}`}>{profilo.telDisplay}</a>
+      {profilo.email && <a href={`mailto:${profilo.email}`}>{profilo.email}</a>}
+      {profilo.tel && <a href={`tel:${profilo.tel}`}>{profilo.telDisplay}</a>}
       <span>{profilo.indirizzo.via} — {profilo.indirizzo.cap} {profilo.indirizzo.citta}</span>
     </div>
     <div class="col copyright">
       <span>© {anno} {profilo.nome}</span>
-      <span class="muted">P.IVA placeholder</span>
+      {profilo.piva && <span class="muted">P.IVA {profilo.piva}</span>}
       <span class="muted">Tutti i diritti riservati</span>
     </div>
   </div>

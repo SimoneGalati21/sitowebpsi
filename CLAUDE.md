@@ -1,7 +1,7 @@
 # sitowebpsi
 
 ## Progetto
-Sito statico Astro, deploy su GitHub Pages (upload manuale da parte utente).
+Sito statico Astro, deploy su GitHub Pages via GitHub Actions (push a `main`).
 
 ## Stack
 - **Framework**: Astro 5.x
@@ -60,7 +60,7 @@ tests/
 1. `make install` (prima volta)
 2. `make up` → sviluppa con HMR
 3. `make build` → `dist/`
-4. Utente carica manualmente `dist/` su GitHub Pages
+4. `git push origin main` → la CI builda e pubblica su Pages
 
 ## Note Astro config
 - `site: 'https://simonegalati21.github.io'` + `base: '/sitowebpsi'` per GitHub Pages project site.
@@ -69,10 +69,11 @@ tests/
 - Tutti i link interni in pagine/componenti usano helper `link()` da `src/lib/url.ts` (prefisso base automatico).
 - HMR via polling (`CHOKIDAR_USEPOLLING=true`) per compatibilità bind mount Docker.
 
-## Deploy GitHub Pages
-1. `make build` → genera `dist/` con base `/sitowebpsi/`
-2. Upload contenuto `dist/` su branch `gh-pages` (o cartella `/docs` su `main`) — utente fa manualmente
-3. Settings repo → Pages → source: branch `gh-pages` root
+## Deploy GitHub Pages (automatico)
+1. Settings repo → Pages → **Source: GitHub Actions** (una tantum)
+2. `git push origin main` → workflow `deploy.yml`: build + upload-pages-artifact + deploy-pages
+3. Sito live: https://simonegalati21.github.io/sitowebpsi/
+- Deploy manuale on-demand: tab Actions → "Deploy to GitHub Pages" → Run workflow (`workflow_dispatch`)
 
 ## Gotcha: Vite cache stale dopo rewrite file
 Quando si **riscrive completamente** un `.astro` (Write tool, non Edit), Vite dev server può servire i **CSS module cached** invece di quelli aggiornati. Sintomo: file su disco aggiornato + `curl` mostra CSS nuovo, ma `<style>` nel DOM browser ha CSS vecchio (verificabile via `document.querySelectorAll('style')` o computed `var(--color-bg)` ancora old).
@@ -81,23 +82,36 @@ Quando si **riscrive completamente** un `.astro` (Write tool, non Edit), Vite de
 
 **Cause root**: cache moduli Vite + scoped CSS `data-astro-cid-xxx` non invalidati al rewrite. Issue noto Astro+Vite+bind mount Docker.
 
+## Professionista (dati reali nel sito)
+Fonte dati: profilo pubblico Unobravo + business Google + Instagram (NON citare Unobravo sul sito).
+- **Dott.ssa Annamaria Cosentino** — Psicologa Psicoterapeuta, orientamento cognitivo-comportamentale
+- Albo: Ordine degli Psicologi della Calabria n° 2314
+- Laurea in Psicologia Clinica e della Salute nel ciclo di vita — Univ. di Messina (110 e lode)
+- Tel/WhatsApp: +39 327 550 4342 · Email: psicologa.cosentino@gmail.com
+- Instagram: @annamariacosentino_psicologa
+- **Sedi**: Online (videochiamata) · Sambiase, Lamezia Terme (CZ) · Filadelfia (VV), Corso Italia 62, 89814 (sede primaria per mappa/footer)
+- Aree servizi: ansia/panico/DOC, depressione, coppia, trauma/lutto, autostima, online
+- Foto: `public/annamaria-cosentino.jpg` (miniatura 200×200, bassa risoluzione — da sostituire con originale se disponibile)
+- Tutti i dati centralizzati in `src/data/profilo.ts` (+ `servizi.ts`); componenti nascondono le righe con valore `""`.
+
 ## Stato repo
-- Git init locale (branch `main`)
-- Implementazione iniziale completata: 4 pagine + 404 + componenti + data layer
+- Branch `main`, remote `origin` → github.com/SimoneGalati21/sitowebpsi
+- Deploy **automatico** via GitHub Actions (`.github/workflows/deploy.yml`) su push a `main`
+- Implementazione completa: 4 pagine + 404, componenti, data layer, dati reali inseriti
 - Design system "Soft UI Evolution" applicato (ui-ux-pro-max skill)
-- Build statico verificato: `make build` → `dist/` pronto per GitHub Pages
-- Nessun remote configurato (push manuale utente)
+- Build statico verificato: `make build` → `dist/`
 
 ## Decisioni prese
 - ✅ Stack: Astro 5
-- ✅ Repo: git init locale, no remote
-- ✅ Contenuto: vetrina psicologa (placeholder credibili — Dott.ssa Elena Marchetti)
+- ✅ Repo: git + remote origin su GitHub, deploy CI su Pages
+- ✅ Contenuto: dati reali Dott.ssa Annamaria Cosentino (Calabria)
 - ✅ Multi-pagina, 4 pagine core + 404
-- ✅ Contatti: solo info (mailto/tel/whatsapp + mappa iframe)
+- ✅ Contatti: solo info (mailto/tel/whatsapp/instagram + mappa iframe)
 - ✅ Design system: lavender (#8B5CF6) + wellness green (#10B981), Lora + Raleway
 - ✅ Anti-pattern rispettati: no emoji icons (SVG Lucide), no neon, no dark mode
-- ⏳ Dati reali professionista: da sostituire prima del deploy
-- ⏳ `astro.config.mjs` `site` + `base`: da scommentare prima del deploy GitHub Pages
+- ✅ `astro.config.mjs` `site` + `base`: attivi (default ON, `ASTRO_BASE=0` per test root)
+- ✅ Primo colloquio descritto come "conoscitivo" (NON "gratuito" — non confermato)
+- ⏳ **P.IVA**: mancante — footer nasconde la riga finché `profilo.piva` resta `""`
 
 ## Vincoli
 - Memoria progetto: SOLO dentro questa cartella (no `~/.claude/`)

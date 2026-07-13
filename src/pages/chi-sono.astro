@@ -6,7 +6,7 @@ import { link } from '../lib/url.ts';
 ---
 <Base
   title="Chi sono"
-  description={`Bio e approccio di ${profilo.nome}, psicoterapeuta a ${profilo.indirizzo.citta}.`}
+  description={`Bio e approccio di ${profilo.nome}, ${profilo.titolo.toLowerCase()} a ${profilo.indirizzo.citta}.`}
 >
   <Hero
     title="Chi sono"
@@ -16,7 +16,7 @@ import { link } from '../lib/url.ts';
 
   <section class="bio-grid">
     <div class="avatar">
-      <img src={link('/illustrations/profile-avatar.svg')} alt={`Ritratto stilizzato di ${profilo.nome}`} loading="eager" />
+      <img src={link('/annamaria-cosentino.jpg')} alt={`Ritratto di ${profilo.nome}`} width="240" height="240" loading="eager" />
       <span class="albo">{profilo.albo}</span>
     </div>
     <div class="bio">
@@ -39,7 +39,7 @@ import { link } from '../lib/url.ts';
 
   <section class="cta-block">
     <h2>Vuoi sapere come lavoriamo?</h2>
-    <p>Il primo colloquio è gratuito e senza impegno.</p>
+    <p>Il primo colloquio è un incontro conoscitivo, senza impegno.</p>
     <a href={link('/contatti')} class="btn-cta">Contattami</a>
   </section>
 </Base>

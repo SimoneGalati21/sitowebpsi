@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# graphify generated graph
+graphify-out/
+
 # dependencies
 node_modules/
 
